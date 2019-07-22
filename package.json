@@ -1,0 +1,21 @@
+{
+  "name": "dc-council-votes",
+  "version": "0.0.1",
+  "description": "Analysis of votes by the Council of the District of Columbia",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kcivey/dc-council-votes.git"
+  },
+  "author": {
+    "name": "Keith C. Ivey",
+    "email": "keith@iveys.org"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kcivey/dc-council-votes/issues"
+  },
+  "homepage": "https://github.com/kcivey/dc-council-votes#readme"
+}
