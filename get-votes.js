@@ -5,6 +5,7 @@ const argv = require('yargs')
         'council': {
             type: 'number',
             describe: 'council period to retrieve votes for',
+            default: Math.round((new Date().getFullYear() - 1973) / 2),
         },
         'delete': {
             type: 'boolean',
@@ -85,6 +86,7 @@ async function main() {
             voteRows.push({
                 council_period: councilPeriod,
                 id: voteId,
+                date: vote.DateOfVote.replace(/^(\d+)\/(\d+)\/(\d+) .*/, '$1-$2-$3'),
                 number: vote.LegislationNumber,
                 title: vote.Title,
                 noes,
@@ -125,6 +127,7 @@ async function createTables() {
             function (table) {
                 table.integer('council_period').notNullable();
                 table.integer('id').notNullable();
+                table.date('date').notNullable();
                 table.string('number').notNullable();
                 table.string('title').notNullable();
                 table.integer('noes').notNullable();
