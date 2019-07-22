@@ -2,7 +2,7 @@
 
 const db = require('./lib/db');
 const request = require('./lib/request');
-const client = require('dc-council-lims').createClient({request});
+const client = require('dc-council-lims').createClient({request, minInterval: 0});
 const batchSize = 100;
 const voteResults = {
     Yes: 1,
@@ -16,7 +16,7 @@ const voteResults = {
 };
 const memberById = {};
 
-main().catch(console.error);
+main().catch(console.error).finally(() => db.destroy());
 
 async function main() {
     await createTables();
@@ -31,21 +31,22 @@ async function main() {
             const memberVoteRows = [];
             for (const vote of votes) {
                 voteId++;
-                voteRows.push({
-                    id: voteId,
-                    council_period: councilPeriod,
-                    number: vote.LegislationNumber,
-                    title: vote.Title,
-                });
+                let noes = 0;
+                let yeses = 0;
                 for (const r of vote.MemberVotes) {
                     const memberId = r.MemberId;
                     if (!memberById[memberId]) {
                         memberById[memberId] = r.MemberName;
                     }
                     const result = voteResults[r.Result];
-
                     if (!result) {
                         throw new Error(`Unknown vote result "${r.Result}"`);
+                    }
+                    if (result === 1) {
+                        yeses++;
+                    }
+                    else if (result === 2) {
+                        noes++;
                     }
                     memberVoteRows.push({
                         vote_id: voteId,
@@ -53,13 +54,21 @@ async function main() {
                         result,
                     });
                 }
+                voteRows.push({
+                    id: voteId,
+                    council_period: councilPeriod,
+                    number: vote.LegislationNumber,
+                    title: vote.Title,
+                    noes,
+                    yeses,
+                });
             }
             await db.batchInsert('votes', voteRows, 100);
             await db.batchInsert('member_votes', memberVoteRows, 100);
             console.warn(councilPeriod, offset, votes.length);
         }
     }
-    await db.batchInsert('members', Object.entries(memberById).map(([key, value]) => ({id: key, name: value})));
+    return await db.batchInsert('members', Object.entries(memberById).map(([key, value]) => ({id: key, name: value})));
 }
 
 function createTables() {
@@ -82,6 +91,7 @@ function createTables() {
                 table.string('number');
                 table.string('title');
                 table.integer('noes');
+                table.integer('yeses');
             }
         )
         .createTable(
