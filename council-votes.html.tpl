@@ -47,8 +47,12 @@
         <th><%- name1 %></th>
         <% for (name2 of names) { %>
           <% r = counts[name1][name2] %>
-          <% percent = (100 * r.same / r.total) %>
-          <td<%= makeStyle(percent) %> title="<%- r.same %>/<%- r.total %>"><%- Math.round(percent) %></td>
+          <% if (r) { %>
+            <% percent = (100 * r.same / r.total) %>
+            <td<%= makeStyle(percent) %> title="<%- r.same %>/<%- r.total %>"><%- Math.round(percent) %></td>
+          <% } else { %>
+            <td class="empty"></td>
+          <% } %>
         <% } %>
       </tr>
     <% } %>
