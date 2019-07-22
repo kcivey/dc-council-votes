@@ -17,5 +17,16 @@
   "bugs": {
     "url": "https://github.com/kcivey/dc-council-votes/issues"
   },
-  "homepage": "https://github.com/kcivey/dc-council-votes#readme"
+  "homepage": "https://github.com/kcivey/dc-council-votes#readme",
+  "dependencies": {
+    "cache-manager": "^2.10.0",
+    "cache-manager-fs": "^1.0.8",
+    "dc-council-lims": "github:kcivey/dc-council-lims-js",
+    "eslint": "^6.1.0",
+    "eslint-config-google": "^0.13.0",
+    "knex": "^0.19.0",
+    "request": "^2.88.0",
+    "request-plus": "^2.0.0",
+    "sqlite3": "^4.0.9"
+  }
 }

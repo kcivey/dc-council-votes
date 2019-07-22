@@ -2,3 +2,5 @@ node_modules
 *.bak
 *.old
 *~
+*.sqlite
+cache
