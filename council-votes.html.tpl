@@ -25,10 +25,39 @@
       height: 40px;
       padding-right: 8px;
     }
+    .columns {
+      border: #ccc 1px solid;
+      padding: 1rem;
+      columns: 2 20rem;
+      max-width: 70rem;
+      column-fill: balance;
+      column-gap: 2rem;
+    }
   </style>
 </head>
 <body>
 <h1>DC Council Votes</h1>
+
+<h2>How Much Do Councilmembers Agree on Votes?</h2>
+
+<div class="columns">
+<p>Since the composition of the council didn't change in the 2018 election, we've had the same members
+for council periods 22 and 23 (from the beginning of 2017). I've analyzed all the votes from that period
+(obtained from <a href="http://lims.dccouncil.us/api/">the Legislative Information System API</a>) to
+determine how often each pair of legislators votes the same way.</p>
+
+<p>More than 95% of the votes in the council during this time were unanimous (had no "no" votes), so I
+excluded those noncontroversial votes from the analysis, leaving 128 votes. I also considered only cases
+where a person voted yes or no (so not abstentions or recusals, for example). For each pair, I took the
+number of times they voted the same way and divided by the number of times they were both present and
+voting. The results are in the table below.</p>
+
+<p>I also included a column with the average for each member of how often their vote agreed with each of
+their colleagues. A high average might indicate members who are more cooperative or more pliant,
+depending on your point of view, while a low average might mean someone is more independent or more
+disagreeable. Note that the two independents (Grosso and especially Silverman) have the lowest
+averages.</p>
+</div>
 
 <% names = Object.keys(counts) %>
 <table id="votes">
