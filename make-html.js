@@ -52,6 +52,6 @@ function makeStyle(percent) {
     const maxLevel = 40;
     const level = minLevel + (maxLevel - minLevel) * (percent - minSame) / (maxSame - minSame);
     const background = hsluvToHex([255, 100, level]);
-    const color = level < 63 ? 'white' : 'black';
+    const color = level < 65 ? 'white' : 'black';
     return ` style="background-color: ${background}; color: ${color};"`;
 }

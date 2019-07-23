@@ -36,23 +36,34 @@
     <tr>
       <th></th>
       <% for (name of names) { %>
-      <th class="rotate"><div><span><%- name %></span></div></th>
+        <th class="rotate"><div><span><%- name %></span></div></th>
       <% } %>
+      <th></th>
+      <th class="rotate"><div><span>Average</span></div></th>
     </tr>
   </thead>
   <tbody>
     <% for (name1 of names) { %>
       <tr>
         <th><%- name1 %></th>
+        <% totalPercent = 0 %>
+        <% count = 0 %>
         <% for (name2 of names) { %>
           <% r = counts[name1][name2] %>
           <% if (r) { %>
             <% percent = (100 * r.same / r.total) %>
+            <% if (name1 !== name2) { %>
+              <% totalPercent += percent %>
+              <% count++ %>
+            <% } %>
             <td<%= makeStyle(percent) %> title="<%- r.same %>/<%- r.total %>"><%- Math.round(percent) %></td>
           <% } else { %>
             <td class="empty"></td>
           <% } %>
         <% } %>
+        <% avgPercent = totalPercent / count %>
+        <td></td>
+        <td<%= makeStyle(avgPercent) %>><%- Math.round(avgPercent) %></td>
       </tr>
     <% } %>
   </tbody>
