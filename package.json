@@ -24,6 +24,7 @@
     "dc-council-lims": "github:kcivey/dc-council-lims-js",
     "eslint": "^6.1.0",
     "eslint-config-google": "^0.13.0",
+    "hsluv": "0.0.3",
     "knex": "^0.19.0",
     "lodash": "^4.17.15",
     "request": "^2.88.0",
