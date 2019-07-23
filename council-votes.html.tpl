@@ -13,12 +13,11 @@
       white-space: nowrap;
     }
     th.rotate > div {
-      transform: translate(22px, 46px) rotate(-45deg);
+      transform: translate(15px, 46px) rotate(-45deg);
       width: 40px;
     }
     th.rotate > div > span {
-      border-bottom: 1px solid #ccc;
-      padding: 5px;
+      padding: 6px 0;
     }
     #votes td {
       text-align: right;
