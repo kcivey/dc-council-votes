@@ -5,6 +5,7 @@ const _ = require('lodash');
 const {hsluvToHex} = require('hsluv');
 const db = require('./lib/db');
 const outFile = __dirname + '/council-votes.html';
+const maxSame = 100;
 let minSame = 100;
 
 main().catch(console.error).finally(() => db.destroy());
@@ -22,7 +23,6 @@ async function main() {
             minSame = same;
         }
     }
-    minSame = Math.max(0, minSame - 20); // to avoid completely white
     const template = _.template(fs.readFileSync(outFile + '.tpl', 'utf-8'));
     fs.writeFileSync(outFile, template({counts, makeStyle}));
 }
@@ -48,8 +48,10 @@ function getData() {
 }
 
 function makeStyle(percent) {
-    const level = 60 * (1 - (percent - minSame) / (100 - minSame)) + 40;
-    const background = hsluvToHex([252, 100, level]);
+    const minLevel = 90;
+    const maxLevel = 40;
+    const level = minLevel + (maxLevel - minLevel) * (percent - minSame) / (maxSame - minSame);
+    const background = hsluvToHex([255, 100, level]);
     const color = level < 63 ? 'white' : 'black';
     return ` style="background-color: ${background}; color: ${color};"`;
 }
