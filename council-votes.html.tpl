@@ -9,15 +9,19 @@
   <link rel="stylesheet" href="/index.css" />
   <style type="text/css">
     th.rotate {
-      height: 140px;
+      height: 88px;
       white-space: nowrap;
     }
     th.rotate > div {
-      transform: translate(15px, 46px) rotate(-45deg);
+      transform: translate(15px, 20px) rotate(-45deg);
       width: 40px;
     }
     th.rotate > div > span {
       padding: 6px 0;
+    }
+    th.side {
+      text-align: right;
+      padding-right: 5px;
     }
     #votes td {
       text-align: right;
@@ -32,6 +36,9 @@
       max-width: 70rem;
       column-fill: balance;
       column-gap: 2rem;
+    }
+    td.empty {
+      background-color: #eee;
     }
   </style>
 </head>
@@ -74,7 +81,7 @@ averages.</p>
   <tbody>
     <% for (name1 of names) { %>
       <tr>
-        <th><%- name1 %></th>
+        <th class="side"><%- name1 %></th>
         <% totalPercent = 0 %>
         <% count = 0 %>
         <% for (name2 of names) { %>

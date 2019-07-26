@@ -14,7 +14,9 @@ async function main() {
     const rows = await getData();
     const counts = {};
     for (const row of rows) {
-        const {name1, name2, same, total} = row;
+        let {name1, name2, same, total} = row;
+        name1 = makeShortName(name1);
+        name2 = makeShortName(name2);
         if (!counts[name1]) {
             counts[name1] = {};
         }
@@ -54,4 +56,18 @@ function makeStyle(percent) {
     const background = hsluvToHex([255, 100, level]);
     const color = level < 65 ? 'white' : 'black';
     return ` style="background-color: ${background}; color: ${color};"`;
+}
+
+function makeShortName(name) {
+    const parts = name.split(/\s+/);
+    // let suffix;
+    let shortName = parts.pop();
+    if (shortName.match(/^(?:[JS]r\.?|I+|I?V)$/)) {
+        // suffix = shortName;
+        shortName = parts.pop();
+    }
+    if (shortName === 'White') {
+        shortName = parts[0].substr(0, 1) + ' ' + shortName;
+    }
+    return shortName;
 }
