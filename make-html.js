@@ -33,7 +33,7 @@ function getData() {
             m1.name AS name1,
             m2.name AS name2,
             SUM(CASE WHEN mv1.result = mv2.result THEN 1 ELSE 0 END) AS same,
-            COUnt(*) AS total
+            COUNT(*) AS total
         FROM member_votes mv1, member_votes mv2, members m1, members m2, votes v
         WHERE mv1.council_period = mv2.council_period AND mv1.vote_id = mv2.vote_id
             AND mv1.council_period = m1.council_period AND m1.id = mv1.member_id
