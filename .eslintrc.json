@@ -1,13 +1,11 @@
 {
     "env": {
         "browser": true,
-        "commonjs": true,
-        "es6": true
+        "es6": true,
+        "node": true
     },
     "extends": "google",
     "globals": {
-        "process": "readonly",
-        "__dirname": "readonly"
     },
     "parserOptions": {
         "ecmaVersion": 2018
