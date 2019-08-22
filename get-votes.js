@@ -161,6 +161,5 @@ async function createTables() {
 
 async function deleteRecords(councilPeriod) {
     await db('members').where('council_period', councilPeriod).del();
-    await db('votes').where('council_period', councilPeriod).del();
     return await db('votes').where('council_period', councilPeriod).del();
 }
