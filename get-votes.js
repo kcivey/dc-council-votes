@@ -88,7 +88,7 @@ async function main() {
                 id: voteId,
                 date: vote.DateOfVote.replace(/^(\d+)\/(\d+)\/(\d+) .*/, '$1-$2-$3'),
                 number: vote.LegislationNumber,
-                title: vote.Title,
+                title: vote.Title.trim().replace(/\s+/g, ' '),
                 noes,
                 yeses,
             });
