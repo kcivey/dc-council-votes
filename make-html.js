@@ -8,7 +8,8 @@ const outFile = __dirname + '/council-votes.html';
 const maxSame = 100;
 let minSame = 100;
 
-main().catch(console.error).finally(() => db.destroy());
+main().catch(console.error)
+    .finally(() => db.destroy());
 
 async function main() {
     const rows = await getData();

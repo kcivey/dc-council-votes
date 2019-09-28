@@ -31,7 +31,8 @@ const voteResults = {
 };
 const memberById = {};
 
-main().catch(console.error).finally(() => db.destroy());
+main().catch(console.error)
+    .finally(() => db.destroy());
 
 async function main() {
     await db.raw('PRAGMA foreign_keys = ON');
@@ -138,7 +139,7 @@ async function createTables() {
     }
     exists = await db.schema.hasTable('member_votes');
     if (!exists) {
-        return db.schema.createTable(
+        await db.schema.createTable(
             'member_votes',
             function (table) {
                 table.integer('council_period').notNullable();
@@ -160,6 +161,10 @@ async function createTables() {
 }
 
 async function deleteRecords(councilPeriod) {
-    await db('members').where('council_period', councilPeriod).del();
-    return await db('votes').where('council_period', councilPeriod).del();
+    await db('members')
+        .where('council_period', councilPeriod)
+        .del();
+    return db('votes')
+        .where('council_period', councilPeriod)
+        .del();
 }
