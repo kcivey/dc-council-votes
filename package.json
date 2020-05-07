@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/kcivey/dc-council-votes#readme",
   "dependencies": {
-    "cache-manager": "^3.1.0",
+    "cache-manager": "^3.3.0",
     "cache-manager-fs": "^1.0.8",
     "dc-council-lims": "^0.1.2",
     "density-clustering": "^1.3.0",
@@ -27,13 +27,13 @@
     "hierarchical-clustering": "^1.1.0",
     "hsluv": "0.1.0",
     "kmeans-engine": "^1.5.0",
-    "knex": "^0.20.11",
+    "knex": "^0.20.15",
     "lodash": "^4.17.15",
     "node-kmeans": "^1.1.9",
     "request": "^2.88.2",
     "request-plus": "^2.0.0",
     "set-clustering": "^1.0.1",
-    "sqlite3": "^4.1.1",
-    "yargs": "^15.1.0"
+    "sqlite3": "^4.2.0",
+    "yargs": "^15.3.1"
   }
 }
