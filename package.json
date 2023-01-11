@@ -27,7 +27,7 @@
     "hierarchical-clustering": "^1.1.0",
     "hsluv": "0.1.0",
     "kmeans-engine": "^1.5.0",
-    "knex": "^0.20.15",
+    "knex": "^2.4.0",
     "lodash": "^4.17.15",
     "node-kmeans": "^1.1.9",
     "request": "^2.88.2",
